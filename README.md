@@ -70,7 +70,7 @@ For production, use HTTPS, a strong persistent secret, managed PostgreSQL, backu
 
 ## Honest feature status
 
-This is a functional starter platform, not a finished competitor to mature AI platforms. The current frontend keeps its Forge drafts and Memory notes in browser localStorage. The API includes account and cloud assistant endpoints, but the current UI does not yet include sign-in screens or sync its Forge editor with those endpoints. The published route currently serves the application shell; a polished standalone public chatbot page and embed widget are next integration work. Research uses the connected model to draft a brief; it does not crawl the web or guarantee citations. Code is reviewed as text and is never executed. File uploads/RAG, image generation, real-time voice conversations, team workspaces, billing, analytics, and model streaming are not implemented.
+This is a functional starter platform, not a finished competitor to mature AI platforms. The frontend includes sign-in and account creation screens. When signed in, Forge can save assistants to the API, sync cloud assistants, and publish a hosted public assistant page. Unsigned-in drafts and Memory notes remain in browser localStorage. A production embed widget and account recovery/email verification are not included yet. Research uses the connected model to draft a brief; it does not crawl the web or guarantee citations. Code is reviewed as text and is never executed. File uploads/RAG, image generation, real-time voice conversations, team workspaces, billing, analytics, and model streaming are not implemented.
 
 ## Security notes
 
