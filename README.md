@@ -32,14 +32,8 @@ AETHER is an early-stage AI workspace with a single interface for chat, research
    python -m pip install -r requirements.txt
    ```
 
-5. Copy `.env.example` to `.env`. Set a long random `AETHER_SECRET_KEY` and optionally `GEMINI_API_KEY` or `OPENAI_API_KEY`. Never put provider keys in `app.js` or `index.html`.
-6. Load environment variables. PowerShell example:
-
-   ```powershell
-   Get-Content .env | ForEach-Object { if ($_ -match '^([^#][^=]*)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process') } }
-   ```
-
-7. Start the server:
+5. Copy `.env.example` to `.env`. Set a long random `AETHER_SECRET_KEY` and optionally `GEMINI_API_KEY` or `OPENAI_API_KEY`. The backend loads `.env` automatically. Never put provider keys in `app.js` or `index.html`.
+6. Start the server:
 
    ```powershell
    python -m uvicorn server:app --host 127.0.0.1 --port 8000
