@@ -9,8 +9,10 @@ from fastapi import FastAPI, HTTPException, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
 ROOT=Path(__file__).resolve().parent
+load_dotenv(ROOT/".env")
 DB_PATH=Path(os.getenv("AETHER_DB_PATH",str(ROOT/"aether.db")))
 SECRET=os.getenv("AETHER_SECRET_KEY","").strip()
 if not SECRET:
