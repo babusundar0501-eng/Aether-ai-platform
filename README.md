@@ -39,9 +39,9 @@ AETHER is an early-stage AI workspace with a single interface for chat, research
    python -m uvicorn server:app --host 127.0.0.1 --port 8000
    ```
 
-8. Open http://127.0.0.1:8000
+7. Open http://127.0.0.1:8000
 
-## API
+On Windows, you can also double-click `run.bat`; it creates the virtual environment, installs dependencies, creates `.env` on first launch, and starts the server.\n\n## API
 
 - `GET /health` — service/provider status
 - `POST /api/auth/register` — create account
