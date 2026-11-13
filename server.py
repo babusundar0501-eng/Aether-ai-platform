@@ -205,4 +205,6 @@ def css():return FileResponse(ROOT/"app.css",media_type="text/css")
 def javascript():return FileResponse(ROOT/"app.js",media_type="application/javascript")
 @app.get("/p/{slug}")
 def published_page(slug:str):
-    return FileResponse(ROOT/"index.html")
+    return FileResponse(ROOT/"public.html")
+@app.get("/public.js")
+def public_javascript():return FileResponse(ROOT/"public.js",media_type="application/javascript")
