@@ -1,6 +1,6 @@
 # BLACKTIDE
 
-**Operation Dead Current** — the original Saltline browser FPS, rebranded with permission from the rights holder.
+**Operation Dead Current**
 
 ## Play locally
 
