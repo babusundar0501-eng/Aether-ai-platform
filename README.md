@@ -1,37 +1,21 @@
 # BLACKTIDE
 
-**Operation Dead Current** — a standalone, browser-based first-person shooter set in a storm-battered container port.
+**Operation Dead Current** — the original Saltline browser FPS, rebranded with permission from the rights holder.
 
-## Play
+## Play locally
 
-Open the GitHub Pages site after Pages is enabled, or run a local static server:
+Run: python -m http.server 8000
 
-```bash
-python -m http.server 8000
-```
+Open http://localhost:8000 and click the game to capture the mouse and start.
 
-Then visit http://localhost:8000.
+## Game
 
-The game loads Three.js from jsDelivr and its display fonts from Google Fonts, so an internet connection is required.
+The original rainy container-port level, gameplay, Three.js rendering, procedural models, sound, enemies, objectives and mechanics are preserved. Only project branding and page metadata were changed.
 
 ## Controls
 
-- **W A S D** — move
-- **Mouse** — aim
-- **Left click** — fire
-- **Shift** — sprint
-- **R** — reload
-- **E** — activate a relay / extraction
-- **Esc** — release mouse / pause
+Use the controls shown in the game's own interface. Press Esc to release the mouse.
 
-## Mission
+## Credits
 
-Restore the three uplink terminals, neutralize hostile autonomous patrol units, and reach the extraction beacon.
-
-## Project
-
-BLACKTIDE is an original implementation. It is inspired by the broad atmosphere and mission structure of rainy tactical extraction shooters, not a copy of Saltline's source code or assets. All gameplay code and visuals in this repository were created for BLACKTIDE.
-
-## GitHub Pages
-
-The included workflow publishes the root directory to GitHub Pages whenever changes are pushed to the default branch. In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions** if it is not already configured.
+Original game created by Felix Rieseberg using Claude Fable 5.2. This rebranded distribution was prepared with permission from the rights holder. BLACKTIDE is not affiliated with or endorsed by Anthropic.
