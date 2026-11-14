@@ -34,21 +34,20 @@ jobs:
           if len(html) < 500_000:
               raise SystemExit(f"Unexpectedly small source file ({len(html)} chars); refusing to replace the game.")
 
-          # Preserve gameplay, graphics, models, sounds and mechanics.
-          # Only change visible project branding and document metadata.
+          # Keep the original gameplay, graphics, models, sounds and mechanics.
+          # Only replace the old project name in the source and page metadata.
           html = re.sub(r"saltline", "blacktide", html, flags=re.IGNORECASE)
+          html = re.sub(r"<title\b[^>]*>.*?</title>", "", html, count=1, flags=re.IGNORECASE | re.DOTALL)
 
-          title = "<title>BLACKTIDE — Operation Dead Current</title>"
-          if re.search(r"<title[^>]*>.*?</title>", html, flags=re.IGNORECASE | re.DOTALL):
-              html = re.sub(r"<title[^>]*>.*?</title>", title, html, count=1, flags=re.IGNORECASE | re.DOTALL)
-          else:
-              html = re.sub(r"<head([^>]*)>", r"<head\\1>\\n" + title, html, count=1, flags=re.IGNORECASE)
+          head = re.search(r"<head\b[^>]*>", html, flags=re.IGNORECASE)
+          if not head:
+              raise SystemExit("Could not locate the document head; refusing to alter the source.")
 
-          description = '<meta name="description" content="BLACKTIDE — a browser-based first-person shooter in a storm-battered container port.">'
-          if re.search(r'<meta[^>]+name=["\\']description["\\']', html, flags=re.IGNORECASE):
-              html = re.sub(r'<meta[^>]+name=["\\']description["\\'][^>]*>', description, html, count=1, flags=re.IGNORECASE)
-          else:
-              html = re.sub(r"<head([^>]*)>", r"<head\\1>\\n" + description, html, count=1, flags=re.IGNORECASE)
+          branding = (
+              "\n<title>BLACKTIDE — Operation Dead Current</title>\n"
+              '<meta name="description" content="BLACKTIDE — a browser-based first-person shooter in a storm-battered container port.">\n'
+          )
+          html = html[:head.end()] + branding + html[head.end():]
 
           Path("index.html").write_text(html, encoding="utf-8")
           print(f"Imported original game ({len(html):,} characters) with branding-only edits.")
