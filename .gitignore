@@ -1,9 +1,6 @@
-.env
-.env.*
-!.env.example
 __pycache__/
 *.py[cod]
-*.db
-.venv/
-venv/
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
