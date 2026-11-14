@@ -13,7 +13,7 @@ const mats={ground:new THREE.MeshStandardMaterial({color:0x253338,roughness:.88}
 const boxGeo=new THREE.BoxGeometry(1,1,1);
 function box(parent,x,y,z,sx,sy,sz,mat,shadow=true){const m=new THREE.Mesh(boxGeo,mat);m.position.set(x,y,z);m.scale.set(sx,sy,sz);m.castShadow=shadow;m.receiveShadow=true;parent.add(m);return m;}
 box(world,0,-.22,-35,180,.4,180,mats.ground,false);
-const grid=new THREE.GridHelper(180,90,0x425354,0x293b3e);grid.position.y:-.015;world.add(grid);
+const grid=new THREE.GridHelper(180,90,0x425354,0x293b3e);grid.position.y=-.015;world.add(grid);
 function container(x,z,w=9,h=4.2,d=3.1,type=0){const g=new THREE.Group();g.position.set(x,h/2,z);world.add(g);const mat=mats.container[type%mats.container.length];box(g,0,0,0,w,h,d,mat);for(let i=0;i<Math.floor(w/.48);i++){const rib=box(g,-w/2+.22+i*.48,0,d/2+.018,.055,h-.08,.045,mats.dark,false);rib.material=mat;}for(let y of [-h/2+.12,h/2-.12])for(let x2 of [-w/2+.12,w/2-.12])box(g,x2,y,d/2+.06,.16,.16,.1,mats.yellow,false);box(g,0,h*.28,d/2+.04,w*.36,.035,.025,mats.yellow,false);return g;}
 container(-13,-4,10,4.4,3.2,0);container(-13,-16,10,4.4,3.2,2);container(-13,-28,10,4.4,3.2,1);
 container(14,-1,10,4.4,3.2,3);container(14,-14,10,4.4,3.2,0);container(14,-27,10,4.4,3.2,2);
