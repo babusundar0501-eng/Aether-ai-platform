@@ -1,76 +1,37 @@
-# AETHER — Unified AI Platform
+# BLACKTIDE
 
-AETHER is an early-stage AI workspace with a single interface for chat, research, agents, code assistance, document drafting, voice, memory, model configuration, and AETHER Forge custom assistants.
+**Operation Dead Current** — a standalone, browser-based first-person shooter set in a storm-battered container port.
 
-## What is in this repository
+## Play
 
-- **Chat** — unified conversation workspace.
-- **Research** — structured research brief generation.
-- **Agents** — task-focused agent templates.
-- **Code** — code explanation and review (no arbitrary execution).
-- **Studio / Create** — turn notes into drafts and creative briefs.
-- **Voice** — browser speech recognition and speech synthesis support where available.
-- **Memory** — local browser notes.
-- **Models** — backend health and provider configuration guidance.
-- **Forge** — create, configure, test, and share assistant previews.
-- **FastAPI backend** — Gemini or OpenAI-compatible chat, password-hashed accounts, signed sessions, SQLite assistant storage, private/public assistant endpoints.
+Open the GitHub Pages site after Pages is enabled, or run a local static server:
 
-## Run locally on Windows
+```bash
+python -m http.server 8000
+```
 
-1. Install Python 3.11 or newer.
-2. Open PowerShell in this repository.
-3. Create and activate a virtual environment:
+Then visit http://localhost:8000.
 
-   ```powershell
-   py -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   ```
+The game loads Three.js from jsDelivr and its display fonts from Google Fonts, so an internet connection is required.
 
-4. Install dependencies:
+## Controls
 
-   ```powershell
-   python -m pip install -r requirements.txt
-   ```
+- **W A S D** — move
+- **Mouse** — aim
+- **Left click** — fire
+- **Shift** — sprint
+- **R** — reload
+- **E** — activate a relay / extraction
+- **Esc** — release mouse / pause
 
-5. Copy `.env.example` to `.env`. Set a long random `AETHER_SECRET_KEY` and optionally `GEMINI_API_KEY` or `OPENAI_API_KEY`. The backend loads `.env` automatically. Never put provider keys in `app.js` or `index.html`.
-6. Start the server:
+## Mission
 
-   ```powershell
-   python -m uvicorn server:app --host 127.0.0.1 --port 8000
-   ```
+Restore the three uplink terminals, neutralize hostile autonomous patrol units, and reach the extraction beacon.
 
-7. Open http://127.0.0.1:8000
+## Project
 
-On Windows, you can also double-click `run.bat`; it creates the virtual environment, installs dependencies, creates `.env` on first launch, and starts the server.\n\n## API
+BLACKTIDE is an original implementation. It is inspired by the broad atmosphere and mission structure of rainy tactical extraction shooters, not a copy of Saltline's source code or assets. All gameplay code and visuals in this repository were created for BLACKTIDE.
 
-- `GET /health` — service/provider status
-- `POST /api/auth/register` — create account
-- `POST /api/auth/login` — sign in
-- `GET /api/auth/me` — current account (Bearer token)
-- `POST /api/chat` — authenticated model chat
-- `GET/POST /api/bots` — list/create assistants
-- `PUT/DELETE /api/bots/{id}` — update/delete an owned assistant
-- `POST /api/bots/{id}/publish` — publish an assistant and receive its public slug
-- `GET /api/public/{slug}` — public assistant metadata
-- `POST /api/public/{slug}/chat` — public assistant chat
+## GitHub Pages
 
-Interactive API docs are available at http://127.0.0.1:8000/docs
-
-## Deploying
-
-Deploy the FastAPI application to a Python host (Render, Railway, Fly.io, or your own server). Configure environment variables in the host dashboard, use persistent storage for `AETHER_DB_PATH`, and set `AETHER_ALLOWED_ORIGINS` to your actual frontend origin. Because the backend serves the frontend, one deployment can host both together.
-
-For production, use HTTPS, a strong persistent secret, managed PostgreSQL, backups, rate limiting, email verification, password reset, abuse monitoring, and a security review. The included SQLite database is suitable for local development and small prototypes, not multi-instance production.
-
-## Honest feature status
-
-This is a functional starter platform, not a finished competitor to mature AI platforms. The frontend includes sign-in and account creation screens. When signed in, Forge can save assistants to the API, sync cloud assistants, and publish a hosted public assistant page. Unsigned-in drafts and Memory notes remain in browser localStorage. A production embed widget and account recovery/email verification are not included yet. Research uses the connected model to draft a brief; it does not crawl the web or guarantee citations. Code is reviewed as text and is never executed. File uploads/RAG, image generation, real-time voice conversations, team workspaces, billing, analytics, and model streaming are not implemented.
-
-## Security notes
-
-- API keys belong only in server environment variables.
-- Passwords are stored as PBKDF2-HMAC-SHA256 hashes; plaintext passwords are never stored.
-- Sessions are signed and expire after 14 days.
-- Configure a stable random `AETHER_SECRET_KEY` before deploying.
-- Set allowed CORS origins explicitly for your deployment.
-- Do not expose the SQLite database file publicly.
+The included workflow publishes the root directory to GitHub Pages whenever changes are pushed to the default branch. In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions** if it is not already configured.
